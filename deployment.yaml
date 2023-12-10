@@ -5,19 +5,26 @@ metadata:
   name: abhi
 spec: 
   minReadySeconds: 3
-  replicas: 5
+  replicas: 4
   selector: 
     matchLabels:
       app: nginx
+      version: "1"
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
   template:
     metadata:
       name: abhi
       labels: 
         app: nginx
+        version: "1"
     spec:
       containers:
         - name: sai
-          image: nginx
+          image: nginx:1
           ports:
             - containerPort: 80
               protocol: TCP

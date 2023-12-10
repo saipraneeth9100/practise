@@ -1,0 +1,29 @@
+---
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: asee
+  labels:
+    app: nginx
+spec:
+  minReadySeconds: 3
+  replicas: 4
+  selector:
+    matchExpressions: 
+      - key: app
+        operator: NotIn
+        values:
+          - apache
+  template: 
+    metadata:
+      name: asee
+      labels:
+        app: nginx
+    spec:
+      containers:
+        - name: aseee
+          image: nginx
+          ports:
+            - name: aseeport
+              containerPort: 80
+              protocol: TCP

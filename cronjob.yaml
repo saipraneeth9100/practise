@@ -1,0 +1,36 @@
+---
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: abhinay
+  labels:
+    app: nginx
+spec:
+  schedule: "* * * * *"
+  # concurrencyPolicy: Allow
+  jobTemplate:
+    # metadata: 
+    #   name: abhinay
+    #   labels: 
+    #     app: nginx
+    spec:
+      activeDeadlineSeconds: 3
+      # selector: 
+      #   key: app
+      #   operator: In
+      #   values: abhinay
+      template: 
+        metadata: 
+          name: abhinay
+          labels: 
+            app: nginx
+        spec:
+          containers:
+            - name: abhi
+              image: nginx
+              ports:
+                - containerPort: 80
+                  protocol: TCP
+          restartPolicy: OnFailure
+              
+          

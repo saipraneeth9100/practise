@@ -1,0 +1,24 @@
+--- 
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: abhi
+spec: 
+  minReadySeconds: 3
+  replicas: 5
+  selector: 
+    matchLabels:
+      app: nginx
+  template:
+    metadata:
+      name: abhi
+      labels: 
+        app: nginx
+    spec:
+      containers:
+        - name: sai
+          image: nginx
+          ports:
+            - containerPort: 80
+              protocol: TCP
+      
